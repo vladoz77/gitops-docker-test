@@ -64,3 +64,10 @@ pipeline{
     }
 }
 
+sh "git config user.email vladoz77@yandex.com"
+                sh "git config user.name vlado77"
+                sh "cat manifest/deployment.yaml"
+                sh "sed -i 's+vladoz77/cicd-test-project.*+vladoz77/cicd-test-project:${TAG}+g' manifest/deployment.yaml"
+                sh "cat manifest/deployment.yaml"
+                sh "git add ."
+                sh "git commit -m 'Done by Jenkins Job update manifest: ${TAG}'"
