@@ -55,7 +55,7 @@ pipeline{
         stage("git push"){
             steps{
                 withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
-                    sh "git push origin ${REPO} main"
+                    sh "git push  ${REPO} main"
                 }
             }
         }
