@@ -1,8 +1,8 @@
 pipeline{
     agent "any"
-    environment{
-        // TAG = "${params.TAG}"
-    }
+    // environment{
+    //     // TAG = "${params.TAG}"
+    // }
     stages{
         stage("Clean-workspace"){
             steps{
