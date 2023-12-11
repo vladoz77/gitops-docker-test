@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cicd-app
+  name: app-dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cicd-app
+  template:
+    metadata:
+      labels:
+        app: cicd-app
+    spec:
+      containers:
+      - image: vladoz77/cicd-docker:latest
+        name: cicd-app
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 50m
+          limits:
+            memory: 250Mi
+            cpu: 100m
+        
+        readinessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /
+            port: 5000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          successThreshold: 1
+          timeoutSeconds: 2
+
+        livenessProbe:
+          failureThreshold: 5
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          successThreshold: 1
+          tcpSocket:
+            port: 5000
+          timeoutSeconds: 2
+        
+        ports:
+          - name: app
+            containerPort: 5000
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-app-srv
+  labels: 
+    app: cicd-app
+spec:
+  selector:
+    app: cicd-app
+  type: ClusterIP
+  ports:
+  - name: app
+    protocol: TCP
+    port: 5000
+    targetPort: 5000
