@@ -12,7 +12,7 @@ pipeline{
    
         stage("Checkout scm"){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github']])              
+                checkout scm Git(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github']])              
                 
             }
         }
