@@ -60,28 +60,13 @@ pipeline{
             }
         }
 
-        stage("argocd update"){
-            environment {
-                ARGOCDSERVER = "https://argocd.dev.local"
-                ARGOCDPROJECT = "default"
-                ARGOCDAPP = "app"
-                K8SCONTEXT = "minikube"
-                K8SNAMESPACE = "default"
-                ARGOCDSYNCOPTIONS = "--sync-policy=auto --prune"
-            }
-            steps{
-                script {
-                    def argocdToken = credentials('jenkins-token')
-                    def appSpecFile = readFile("argocd-app.yaml")
-
-                    def argocd = new Argocd(server: ARGOCDSERVER, token: argocdToken)
-                    argocd.createApplication(appSpecFile, project: ARGOCDPROJECT)
-                    argocd.syncApplication(ARGOCDAPP, ARGOCDSYNCOPTIONS)
-                    }
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f manifest/app.yaml'
                 }
-            }
         }
         
+    }
 }
 
 
