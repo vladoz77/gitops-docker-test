@@ -1,8 +1,8 @@
 pipeline{
     agent "any"
-    // environment{
-    //     // TAG = "${params.TAG}"
-    // }
+    environment{
+        TAG = "${params.TAG}"
+    }
     stages{
         stage("Clean-workspace"){
             steps{
@@ -15,5 +15,7 @@ pipeline{
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/vladoz77/gitops-docker-test'
             }
         }
+
+        
     }
 }
