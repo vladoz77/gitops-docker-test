@@ -12,8 +12,7 @@ pipeline{
    
         stage("Checkout scm"){
             steps{
-                checkout scm Git(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github']])              
-                
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/vladoz77/gitops-docker-test'
             }
         }
     }
