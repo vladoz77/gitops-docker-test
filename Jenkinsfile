@@ -24,7 +24,7 @@ pipeline{
                        git config user.name vladoz77
                        git config user.email vladoz77@yandex.com
                        cat manifest/app.yaml
-                       sed -i s/${IMAGE_NAME}.*/${IMAGE_NAME}.${IMAGE_TAG}/g
+                       sed -i 's+${IMAGE_NAME}.*+${IMAGE_NAME}.${IMAGE_TAG}+g'
                        cat manifest/app.yaml
                     """
                 }
