@@ -1,7 +1,7 @@
 pipeline{
     agent "any"
     environment{
-        IMAGE_TAG = "10.0.0"
+        IMAGE_TAG = "${param.IMAGE_TAG}"
         IMAGE_NAME = "vladoz77/cicd-docker"
         REPO = "https://github.com/vladoz77/gitops-docker-test"
     }
