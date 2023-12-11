@@ -1,7 +1,7 @@
 pipeline{
     agent "any"
     environment{
-        IMAGE_TAG = "${params.IMAGE_TAG}"
+        IMAGE_TAG = "10.0.0"
         IMAGE_NAME = "vladoz77/cicd-docker"
     }
     stages{
