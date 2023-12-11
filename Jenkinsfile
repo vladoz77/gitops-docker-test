@@ -52,7 +52,7 @@ pipeline{
             }
         }
         
-        stage("git commit"){
+        stage("git push"){
             steps{
                 withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
                     git push origin "${REPO}" main
