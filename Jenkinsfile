@@ -62,7 +62,7 @@ pipeline{
 
         stage("argocd update"){
             environment {
-                ARGOCDSERVER = "https://argocd-server.example.com"
+                ARGOCDSERVER = "https://argocd.dev.local"
                 ARGOCDPROJECT = "default"
                 ARGOCDAPP = "app"
                 K8SCONTEXT = "minikube"
