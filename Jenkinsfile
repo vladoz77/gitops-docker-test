@@ -48,7 +48,7 @@ pipeline{
             steps{
                 script{
                     withCredentials([string(credentialsId: 'argocd-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
-                        sh(returnStdout: true, script: ''' #!/bin/bash
+                        sh(script: ''' #!/bin/bash
                                                
                         argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1
                         
@@ -62,7 +62,7 @@ pipeline{
                         
                         argocd app sync ${ARGO_APP_NAME} --force --grpc-web
                         
-                        ''')
+                        '''.stripIndent())
                     }
                 }
             }
