@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: cicd-app
-  name: app-dep
+  name: cicd-app-dep
 spec:
   replicas: 3
   selector:
