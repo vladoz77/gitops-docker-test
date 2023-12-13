@@ -3,9 +3,9 @@
 ARGO_APP_MANIFEST="argocd-app.yaml"
 ARGO_APP_NAME="cicd-docker"
 
-argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1
+# argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1
                         
-if [ ${?} -eq 0 ]
+if [ "argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1"  ]
 then
   echo App ${ARGO_APP_NAME} is created
 else
