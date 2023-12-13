@@ -67,7 +67,7 @@ pipeline{
                 }
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'jenkins-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'argocd-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
                         sh "ARGOCD_SERVER=${ARGOCD_SERVER} argocd --grpc-web app create --file ${ARGO_APP}"
                         sh "ARGOCD_SERVER=${ARGOCD_SERVER} argocd --grpc-web app sync ${ARGO_APP} --force"
                     }
