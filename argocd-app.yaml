@@ -16,6 +16,6 @@ spec:
   sources: []
   project: default
   syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
+    automated: {}
+    syncOptions:
+      - PruneLast=true
