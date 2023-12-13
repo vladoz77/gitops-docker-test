@@ -61,7 +61,8 @@ pipeline{
                         fi
                         
                         argocd app sync ${ARGO_APP_NAME}  --grpc-web
-                        
+                        argocd app wait ${ARGO_APP_NAME} --timeout 600 --grpc-web
+                        '''
                         '''.stripIndent())
                     }
                 }
