@@ -18,47 +18,47 @@ pipeline{
             }
         }
         
-        stage("git config"){
-            steps{
-                script{
-                    sh """
-                       git config user.name vladoz77
-                       git config user.email vladoz77@yandex.com2
-                    """
-                }
-            }
-        }
+        // stage("git config"){
+        //     steps{
+        //         script{
+        //             sh """
+        //                git config user.name vladoz77
+        //                git config user.email vladoz77@yandex.com2
+        //             """
+        //         }
+        //     }
+        // }
         
-        stage("replace build number"){
-            steps{
-                script{
-                    sh"""
-                       cat manifest/app.yaml
-                       sed -i 's+${IMAGE_NAME}.*+${IMAGE_NAME}:${IMAGE_TAG}+g' manifest/app.yaml
-                       cat manifest/app.yaml
-                    """
-                }
-            }
-        }
+        // stage("replace build number"){
+        //     steps{
+        //         script{
+        //             sh"""
+        //                cat manifest/app.yaml
+        //                sed -i 's+${IMAGE_NAME}.*+${IMAGE_NAME}:${IMAGE_TAG}+g' manifest/app.yaml
+        //                cat manifest/app.yaml
+        //             """
+        //         }
+        //     }
+        // }
 
-        stage("git commit"){
-            steps{
-                script{
-                    sh """
-                       git add .
-                       git commit -m 'Done by Jenkins Job update manifest: ${IMAGE_TAG}'
-                    """
-                }
-            }
-        }
+        // stage("git commit"){
+        //     steps{
+        //         script{
+        //             sh """
+        //                git add .
+        //                git commit -m 'Done by Jenkins Job update manifest: ${IMAGE_TAG}'
+        //             """
+        //         }
+        //     }
+        // }
         
-        stage("git push"){
-            steps{
-                withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
-                    sh "git push  ${REPO} main"
-                }
-            }
-        }
+        // stage("git push"){
+        //     steps{
+        //         withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+        //             sh "git push  ${REPO} main"
+        //         }
+        //     }
+        // }
 
         stage("argocd deploy"){
             environment{
