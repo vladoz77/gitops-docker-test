@@ -82,7 +82,7 @@ pipeline{
                         sleep 10
                         argocd app sync ${ARGO_APP_NAME} --force --grpc-web
                         
-                        '''.stripIndent())
+                        ''')
                     }
                 }
             }
