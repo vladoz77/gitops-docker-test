@@ -68,8 +68,21 @@ pipeline{
             steps{
                 script{
                     withCredentials([string(credentialsId: 'argocd-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
-                        sh "argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web"
-                        sh "argocd app sync ${ARGO_APP_NAME} --force --grpc-web"
+                        sh """
+                        // Check argo app is create?
+                        argocd app get ${ARGO_APP_NAME}
+                        
+                        // Create if not
+                        if [ ${?} -eq 0 ]
+                        then
+                          echo 'App ${ARGO_APP_NAME} is created'
+                        else
+                          argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
+                        fi
+                        
+                        // Sync argo app
+                        argocd app sync ${ARGO_APP_NAME} --force --grpc-web
+                        """
                     }
                 }
             }
