@@ -14,7 +14,7 @@ spec:
     repoURL: 'https://github.com/vladoz77/gitops-docker-test'
     targetRevision: main
   sources: []
-  project: apps2deploy
+  project: default
   syncPolicy:
     automated:
       prune: false
