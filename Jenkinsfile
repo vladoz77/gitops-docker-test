@@ -74,9 +74,9 @@ pipeline{
                         
                         if [ ${?} -eq 0 ]
                         then
-                        echo App ${ARGO_APP_NAME} is created
+                            echo App ${ARGO_APP_NAME} is created
                         else
-                        argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
+                            argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
                         fi
                         
                         sleep 10
