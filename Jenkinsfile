@@ -77,9 +77,9 @@ pipeline{
                             echo App ${ARGO_APP_NAME} is created
                         else
                             argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
+                            sleep 5
                         fi
                         
-                        sleep 5
                         argocd app sync ${ARGO_APP_NAME} --force --grpc-web
                         
                         ''')
