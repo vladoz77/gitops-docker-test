@@ -7,7 +7,7 @@ ARGO_APP_NAME="cicd-docker"
                         
 if [ "argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1"  ]
 then
-  echo App ${ARGO_APP_NAME} is created
+  echo "App ${ARGO_APP_NAME} is created"
 else
   argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
 fi
