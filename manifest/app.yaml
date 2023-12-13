@@ -15,7 +15,7 @@ spec:
         app: cicd-app
     spec:
       containers:
-      - image: vladoz77/cicd-docker:null
+      - image: vladoz77/cicd-docker:1.0.0-50
         name: cicd-app
         imagePullPolicy: Always
         resources:
