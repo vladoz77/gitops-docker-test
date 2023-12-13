@@ -70,7 +70,7 @@ pipeline{
                     withCredentials([string(credentialsId: 'argocd-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
                         sh ''' #!/bin/bash
                                                
-                        // Create if not
+                        
                         if [ "argocd app get ${ARGO_APP_NAME} > /dev/null 2>&1" ]
                         then
                           echo 'App ${ARGO_APP_NAME} is created'
@@ -78,7 +78,7 @@ pipeline{
                           argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
                         fi
                         
-                        // Sync argo app
+                      
                         argocd app sync ${ARGO_APP_NAME} --force --grpc-web
                         '''
                     }
