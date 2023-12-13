@@ -79,7 +79,7 @@ pipeline{
                             argocd app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST} --grpc-web
                         fi
                         
-                        sleep 10
+                        sleep 5
                         argocd app sync ${ARGO_APP_NAME} --force --grpc-web
                         
                         ''')
