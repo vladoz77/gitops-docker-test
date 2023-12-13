@@ -60,7 +60,7 @@ pipeline{
             }
         }
 
-        stage("git commit"){
+        stage("argocd deploy"){
             steps{
                 environment{
                     ARGO_APP = "argocd-app.yaml"
