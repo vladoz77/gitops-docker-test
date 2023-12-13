@@ -60,6 +60,21 @@ pipeline{
             }
         }
 
+        stage("git commit"){
+            steps{
+                environment{
+                    ARGO_APP = "argocd-app.yaml"
+                    ARGOCD_SERVER = "argocd.dev.local"
+                }
+                script{
+                    withCredentials([string(credentialsId: 'jenkins-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
+                        sh "argocd --grpc-web app set --file ${ARGO_APP}"
+
+                    }
+                }
+            }
+        }
+
     }
 }
 
