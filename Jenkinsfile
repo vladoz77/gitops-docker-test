@@ -62,14 +62,15 @@ pipeline{
 
         stage("argocd deploy"){
             environment{
-                    ARGO_APP = "argocd-app.yaml"
+                    ARGO_APP_MANIFEST = "argocd-app.yaml"
+                    ARGO_APP_NAME = "cicd-docker"
                     ARGOCD_SERVER = "argocd.dev.local"
                 }
             steps{
                 script{
                     withCredentials([string(credentialsId: 'argocd-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
-                        sh "ARGOCD_SERVER=${ARGOCD_SERVER} argocd --grpc-web app create --file ${ARGO_APP}"
-                        sh "ARGOCD_SERVER=${ARGOCD_SERVER} argocd --grpc-web app sync ${ARGO_APP} --force"
+                        sh "argocd --grpc-web app create ${ARGO_APP_NAME} --file ${ARGO_APP_MANIFEST}"
+                        sh "argocd --grpc-web app sync ${ARGO_APP_NAME} --force"
                     }
                 }
             }

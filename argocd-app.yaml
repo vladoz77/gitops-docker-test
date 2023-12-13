@@ -1,7 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app
+  name: cicd-docker
+  namespace: argocd
+
 spec:
   destination:
     name: ''
@@ -12,7 +14,7 @@ spec:
     repoURL: 'https://github.com/vladoz77/gitops-docker-test'
     targetRevision: main
   sources: []
-  project: default
+  project: apps2deploy
   syncPolicy:
     automated:
       prune: false

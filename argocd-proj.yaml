@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: apps2deploy
+  namespace: argocd
+spec:
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - '*'
+  roles:
+    - description: project role to create and sync apps from a CI/CD pipeline
+      name: jenkins-deploy
+      policies:
+      - p, proj:apps2deploy:jenkins-deploy, applications, get, apps2deploy/*, allow
+      - p, proj:apps2deploy:jenkins-deploy, applications, create, apps2deploy/*, allow
+      - p, proj:apps2deploy:jenkins-deploy, applications, update, apps2deploy/*, allow
+      - p, proj:apps2deploy:jenkins-deploy, applications, delete, apps2deploy/*, allow
+      - p, proj:apps2deploy:jenkins-deploy, applications, sync, apps2deploy/*, allow
